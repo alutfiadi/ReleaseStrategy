@@ -114,10 +114,11 @@ sap.ui.define([
 				var that = this;
 				var sUrlMutasi = "/sap/opu/odata/sap/ZHCM_MUTASI_SRV";
 				var oModelMutasi = new sap.ui.model.odata.ODataModel(sUrlMutasi, true);
+				var oFilterEmp = new Filter("Otorisasi", FilterOperator.EQ, 'X');
 				this.getView().setModel(oModelMutasi);
-				oModelMutasi.read("/GetListEmployeeMutasiSet",
-					null, null, true,
-					function (oData, oReponse) {
+				oModelMutasi.read("/GetListEmployeeMutasiSet", {
+					filters: [oFilterEmp],
+					success: function (oData, response) {
 						var arrayData = oData.results;
 						var jsondata = {
 							items: arrayData
@@ -155,10 +156,16 @@ sap.ui.define([
 							text: "{Pernr} - {Sname}"
 						}));
 						oDialog.close();
-					},
-					function (error) {
-						//if the call to odata fails, handle the error here
-					});
+					}
+				});
+				// oModelMutasi.read("/GetListEmployeeMutasiSet",
+				// 	null, null, true,
+				// 	function (oData, oReponse) {
+
+				// 	},
+				// 	function (error) {
+				// 		//if the call to odata fails, handle the error here
+				// 	});
 
 				// //Company Combobox
 				// this.getView().byId("cbCompany").setFilterFunction(function (sTerm, oItem) {
@@ -288,35 +295,35 @@ sap.ui.define([
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("None");
-				}else if (iRstxt === null || iRstxt == "") {
+				} else if (iRstxt === null || iRstxt == "") {
 					bValidationError = true;
 					this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("Error");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("None");
-				}else if (cbDocType === null || cbDocType == "") {
+				} else if (cbDocType === null || cbDocType == "") {
 					bValidationError = true;
 					this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("Error");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("None");
-				}else if (cbBusiness === null || cbBusiness == "") {
+				} else if (cbBusiness === null || cbBusiness == "") {
 					bValidationError = true;
 					this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("Error");
 					this.getView().byId("cbUnit").setValueState("None");
-				}else if (cbUnit === null || cbUnit == "") {
+				} else if (cbUnit === null || cbUnit == "") {
 					bValidationError = true;
 					this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("Error");
-				}else {
+				} else {
 					bValidationError = false;
 					this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
@@ -516,7 +523,7 @@ sap.ui.define([
 					}
 					var releaseStrategy = {
 						"Doctype": cbDocType,
-						"ChangeInd" : "I",
+						"ChangeInd": "I",
 						"Rscode": iRscode,
 						"Fromto": cbFromTo,
 						"Rstxt": iRstxt,

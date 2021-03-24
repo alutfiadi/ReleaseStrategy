@@ -12,7 +12,7 @@
 					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="McStext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
 					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
 			<EntityType Name="MasterDataGolongan" sap:content-version="1">
-				<Key><PropertyRef Name="Persk"/></Key><Property Name="Persk" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="EE subgroup" sap:creatable="false"
+				<Key><PropertyRef Name="Persg"/></Key><Property Name="Persg" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="EE group" sap:creatable="false"
 					sap:updatable="false"/></EntityType>
 			<EntityType Name="MasterDataReasonPromosi" sap:content-version="1">
 				<Key><PropertyRef Name="Massn"/></Key><Property Name="Massn" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Action Type" sap:creatable="false"

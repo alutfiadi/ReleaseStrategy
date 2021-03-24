@@ -119,7 +119,7 @@
                                         <content>
                                             <Text text="Release Group" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                             <ToolbarSpacer width=""/>
-                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="auto" search="Change"/>
+                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="auto" search="onFilterGroups"/>
                                             <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress2"/>
                                             <!--<OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
                                         </content>

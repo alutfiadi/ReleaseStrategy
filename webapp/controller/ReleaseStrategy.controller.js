@@ -288,7 +288,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 		Change: function (oEvent) {
 
-			var oTable =  this.getView().byId("tRgroup");
+			var oTable = this.getView().byId("tRgroup");
 			var searchText = oEvent.getParameter("query");
 			var filters = [];
 			if (searchText != "") {
@@ -320,12 +320,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sQuery = oEvent.getParameter("query");
 			if (sQuery) {
 				aFilter.push(new Filter("Rgcode", FilterOperator.Contains, sQuery));
+				aFilter.push(new Filter("Rgtxt", FilterOperator.Contains, sQuery));
 			}
 
 			// filter binding
 			var oList = this.getView().byId("tRgroup");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
+
 		}
+
 	});
 }, /* bExport= */ true);
