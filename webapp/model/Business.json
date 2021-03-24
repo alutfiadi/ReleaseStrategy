@@ -1,0 +1,20 @@
+{
+  "BusinessCollection": [
+    {
+      "Code": "1",
+      "Business": "ESTATE"
+    },
+	{
+      "Code": "2",
+      "Business": "INDUSTRY"
+    },
+	{
+      "Code": "3",
+      "Business": "POM"
+    },
+	{
+      "Code": "4",
+      "Business": "HO/BO"
+    }
+  ]
+}

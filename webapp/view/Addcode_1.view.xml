@@ -1,0 +1,93 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="AL.ReleaseStrategy.controller.Addcode_1">
+	<Page showHeader="true" title="Add Release Code" showFooter="true" showNavButton="false">
+		<content>
+			<BusyDialog id="BusyDialog"/>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Release Code" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Release Group" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="cbGroup" showSecondaryValues="true" items="{ path: 'ReleaseStrategy>/ReleaseGroupSet', sorter: { path: 'Rgcode' }}">
+										<core:ListItem key="{ReleaseStrategy>Rgcode}" text="{ReleaseStrategy>Rgtxt}" additionalText="{ReleaseStrategy>Rgcode}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Release Code" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true"
+										valueStateText="Invalid entry" maxLength="4" placeholder="Release Code" id="irccode"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="false">
+								<form:label>
+									<Label text="User" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"
+										labelFor="MultiInput"/>
+								</form:label>
+								<form:fields>
+									<MultiInput id="multiInput" valueHelpRequest=".onValueHelpRequested"
+										suggestionRows="{ path: '/UserCollection', sorter: { path: 'Name' }, length: 10 }">
+										<suggestionColumns>
+											<Column>
+												<Label text="NIK"/>
+											</Column>
+											<Column>
+												<Label text="Name"/>
+											</Column>
+										</suggestionColumns>
+										<suggestionRows>
+											<ColumnListItem>
+												<cells>
+													<Label text="{NIK}"/>
+													<Label text="{Name}"/>
+												</cells>
+											</ColumnListItem>
+										</suggestionRows>
+									</MultiInput>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true"
+								id="element5">
+								<form:label>
+									<Label xmlns="sap.m" text="Release Code Description" design="Standard" width="100%" required="false" textAlign="Begin"
+										textDirection="Inherit" visible="true" id="label9"/>
+								</form:label>
+								<form:fields>
+									<Input xmlns="sap.m" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true"
+										valueStateText="Invalid entry" maxLength="0" id="irctxt" placeholder="Description of Release Code"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="_onButtonPress"/>
+					<Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="navBack"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

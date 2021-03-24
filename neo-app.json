@@ -40,7 +40,17 @@
         "version": "1.60.1"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "IDDCLNT777",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "Connection to IDD Client 710"
     }
+    
   ],
   "sendWelcomeFileRedirect": true
 }

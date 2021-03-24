@@ -1,21 +1,55 @@
 {
-	"_version": "1.12.0",
+	"_version": "1.8.0",
 	"sap.app": {
+		"_version": "1.3.0",
 		"id": "AL.ReleaseStrategy",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
-			"version": "1.0.0"
+			"version": "1.2.2"
+		},
+		"dataSources": {
+			"local": {
+				"uri": "/here/goes/your/serviceUrl/local/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"ZHCM_WF_ENGINE_SRV": {
+				"uri": "/sap/opu/odata/sap/ZHCM_WF_ENGINE_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZHCM_WF_ENGINE_SRV/metadata.xml"
+				}
+			},
+			"ZHCM_MUTASI_SRV": {
+				"uri": "/sap/opu/odata/sap/ZHCM_MUTASI_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZHCM_MUTASI_SRV/metadata.xml"
+				}
+			},
+			"ZHCM_MASTER_DATA_SRV": {
+				"uri": "/sap/opu/odata/sap/ZHCM_MASTER_DATA_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZHCM_MASTER_DATA_SRV/metadata.xml"
+				}
+			}
 		},
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
+		"ach": "ach",
+		"resources": "resources.json",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.38.11"
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
 		}
 	},
-
 	"sap.ui": {
+		"_version": "1.3.0",
 		"technology": "UI5",
 		"icons": {
 			"icon": "",
@@ -31,21 +65,18 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
-		"flexEnabled": false,
+		"_version": "1.3.0",
 		"rootView": {
-			"viewName": "AL.ReleaseStrategy.view.Home",
-			"type": "XML",
-			"async": true,
-			"id": "Home"
+			"viewName": "generated.app.view.Addcode_1",
+			"type": "XML"
 		},
 		"dependencies": {
-			"minUI5Version": "1.60.1",
+			"minUI5Version": "1.50.0",
 			"libs": {
-				"sap.ui.layout": {},
 				"sap.ui.core": {},
-				"sap.m": {}
+				"sap.m": {},
+				"sap.ui.layout": {}
 			}
 		},
 		"contentDensities": {
@@ -55,40 +86,138 @@
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"ReleaseStrategy": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
-					"bundleName": "AL.ReleaseStrategy.i18n.i18n"
-				}
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZHCM_WF_ENGINE_SRV",
+				"preload": true
+			},
+			"Employee": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZHCM_MUTASI_SRV",
+				"preload": true
+			},
+			"MasterData": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZHCM_MASTER_DATA_SRV",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": []
 		},
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"async": true,
 				"viewPath": "AL.ReleaseStrategy.view",
+				"controlId": "App",
+				"clearTarget": false,
 				"controlAggregation": "pages",
-				"controlId": "app",
-				"clearControlAggregation": false
+				"bypassed": {
+					"target": ["ReleaseStrategy"]
+				}
+			},
+			"targets": {
+				"ReleaseStrategy": {
+					"controlAggregation": "pages",
+					"viewName": "ReleaseStrategy",
+					"viewId": "ReleaseStrategy",
+					"viewLevel": 1,
+					"transition": "flip"
+				},
+				"Addstrategy": {
+					"controlAggregation": "pages",
+					"viewName": "Addstrategy",
+					"viewId": "Addstrategy",
+					"viewLevel": 7,
+					"transition": "slide"
+				},
+				"Editstrategy": {
+					"controlAggregation": "pages",
+					"viewName": "Editstrategy",
+					"viewId": "Editstrategy",
+					"viewLevel": 6,
+					"transition": "show"
+				},
+				"Editcode": {
+					"controlAggregation": "pages",
+					"viewName": "Editcode",
+					"viewId": "Editcode",
+					"viewLevel": 5,
+					"transition": "show"
+				},
+				"EditGroup": {
+					"controlAggregation": "pages",
+					"viewName": "EditGroup",
+					"viewId": "EditGroup",
+					"viewLevel": 4,
+					"transition": "show"
+				},
+				"Addgroup_1": {
+					"controlAggregation": "pages",
+					"viewName": "Addgroup_1",
+					"viewId": "Addgroup_1",
+					"viewLevel": 3,
+					"transition": "show"
+				},
+				"Addcode_1": {
+					"controlAggregation": "pages",
+					"viewName": "Addcode_1",
+					"viewId": "Addcode_1",
+					"viewLevel": 2,
+					"transition": "show"
+				}
 			},
 			"routes": [{
-				"name": "RouteHome",
-				"pattern": "RouteHome",
-				"target": ["TargetHome"]
-			}],
-			"targets": {
-				"TargetHome": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewId": "Home",
-					"viewName": "Home"
-				}
-			}
+				"pattern": "ReleaseStrategy/:context:",
+				"name": "ReleaseStrategy",
+				"target": ["ReleaseStrategy"]
+			}, {
+				"pattern": "",
+				"name": "Addstrategy",
+				"target": ["ReleaseStrategy"]
+			}, {
+				"pattern": "Addstrategy/:context:",
+				"name": "Addstrategy",
+				"target": ["Addstrategy"]
+			}, {
+				"pattern": "Editstrategy/:context:",
+				"name": "Editstrategy",
+				"target": ["Editstrategy"]
+			}, {
+				"pattern": "Editcode/{rcPath}",
+				"name": "Editcode",
+				"target": ["Editcode"]
+			}, {
+				"pattern": "EditGroup/{rgPath}",
+				"name": "EditGroup",
+				"target": ["EditGroup"]
+			}, {
+				"pattern": "Addgroup_1/:context:",
+				"name": "Addgroup_1",
+				"target": ["Addgroup_1"]
+			}, {
+				"pattern": "Addcode_1/:context:",
+				"name": "Addcode_1",
+				"target": ["Addcode_1"]
+			}]
 		}
 	}
 }

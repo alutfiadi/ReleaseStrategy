@@ -1,0 +1,447 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="AL.ReleaseStrategy.controller.Addstrategy">
+	<Page showHeader="true" title="Create Release Strategy" showFooter="true" showNavButton="false">
+		<content>
+            <BusyDialog id="BusyDialog" />
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Header" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Release Strategy" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="iRscode" value="" placeholder="Release Strategy Code" type="Text" showValueHelp="false" enabled="true" visible="true"
+										width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="8"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label  text="Release Strategy Desc" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
+										visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="iRstxt" placeholder="Release Strategy " type="Text" showValueHelp="false" enabled="true" visible="true" width="auto"
+										valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="20"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Release Group" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="cbGroup" placeholder="Release Group" type="Text" enabled="false" visible="true" width="auto" required="false"/>
+									<!--<ComboBox id="cbGroup" showSecondaryValues="true" items="{ path: 'ReleaseStrategy>/ReleaseGroupSet', sorter: { path: 'Rgcode' }, suspended: true}" loadItems="handleLoadItems">-->
+									<!--	<core:ListItem key="{ReleaseStrategy>Rgcode}" text="{ReleaseStrategy>Rgtxt}" additionalText="{ReleaseStrategy>Rgcode}"/>-->
+									<!--</ComboBox>-->
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Release Code" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="cbCode" showSecondaryValues="true"
+										items="{ path: 'ReleaseStrategy>/ReleaseCodeSet', sorter: { path: 'Rccode' }, suspended: true}" loadItems="handleLoadItems"
+										selectionChange="onChange">
+										<core:ListItem key="{ReleaseStrategy>Rccode}" text="{ReleaseStrategy>Rccode} - {ReleaseStrategy>Rctxt}"
+											additionalText="{ReleaseStrategy>Rgcode}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Time Limit (days)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="iLimit" placeholder="Time limit days" type="Number" showValueHelp="false" enabled="true" visible="true" width="25%" valueHelpOnly="false"
+										required="false" valueStateText="Invalid entry"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Requester" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbRequester" placeholder="Choose Max 3 User Requester" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None" selectionFinish="validasiUser"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Release Strategy Parameters" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Document Type" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="cbDocType" placeholder="Choose Document Type" editable="true" enabled="true" visible="true" width="auto" valueState="None"
+										maxWidth="100%" items="{ path: '/DocTypeCollection' }" selectionChange="onChangeDocType">
+										<core:ListItem key="{DocTypeCode}" text="{DocTypeCode} - {Doctype}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="false"
+								id="elFromTo">
+								<form:label>
+									<Label xmlns="sap.m" text="From / To" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit"
+										visible="true" id="lFromTo"/>
+								</form:label>
+								<form:fields>
+									<ComboBox xmlns="sap.m" selectedKey="" placeholder="Choose From or To" editable="true" enabled="true" visible="true" width="auto"
+										valueState="None" maxWidth="100%" id="cbFromTo" >
+										<core:ListItem key="01" text="From"/>
+										<core:ListItem key="02" text="To"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true"
+								id="element32">
+								<form:label>
+									<Label xmlns="sap.m" text="Business Category" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit"
+										visible="true" id="label31"/>
+								</form:label>
+								<form:fields>
+									<ComboBox xmlns="sap.m" selectedKey="" placeholder="Choose Business Category" editable="true" enabled="true" visible="true" width="auto"
+										valueState="None" maxWidth="100%" id="cbBusiness" items="{ path: '/BusinessCollection' }" selectionChange="onChangeBusiness">
+										<core:ListItem key="{Code}" text="{Code} - {Business}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Unit" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="cbUnit" placeholder="Choose Unit" editable="true" enabled="false" visible="true" width="auto" valueState="None"
+										maxWidth="100%" items="{ path: 'MasterData>/AbbreviationUnitSet', suspended:true}" loadItems="handleLoadItems"
+										selectionChange="onChangeUnit">
+										<core:ListItem key="{MasterData>Z12abbr}" text="{MasterData>Z12abbr} - {MasterData>Z12abbrtxt}"/>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Division" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="cbDivision" placeholder="Choose Division" editable="true" enabled="false" visible="true" width="auto" valueState="None"
+										maxWidth="100%" selectionChange="onChangeDivision" items="{ path: 'MasterData>/AbbreviationDivisiSet', suspended:true}"
+										loadItems="handleLoadItems">
+										<core:ListItem key="" text="" />
+										<core:ListItem key="{MasterData>Z34abbr}" text="{MasterData>Z34abbr} - {MasterData>Z34abbrtxt}"/>
+									</ComboBox>
+									<CheckBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="ckDivision" text="All"
+										selected="false" tooltip="All Company" select="onAllDivision" enabled="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Department" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="cbDepartment" placeholder="Choose Department" enabled="false" showSecondaryValues="true"
+										items="{ path: 'MasterData>/AbbreviationDepartementSet' }" selectionChange="onChangeDepartment">
+										<core:ListItem key="" text="" />
+										<core:ListItem key="{MasterData>Z56abbr}" text="{MasterData>Z56abbr} - {MasterData>Z56abbrtxt}" />
+									</ComboBox>
+									<CheckBox xmlns="sap.m" id="ckDepartment" text="All" selected="false" tooltip="All Company" select="onAllDepartment" enabled="false"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true"
+								id="element33">
+								<form:label>
+									<Label xmlns="sap.m" text="Section" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"
+										id="label32"/>
+								</form:label>
+								<form:fields>
+									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="true" enabled="false" visible="true" width="auto" valueState="None" maxWidth="100%"
+										id="cbSection" items="{ path: 'MasterData>/AbbreviationSectionSet' }" >
+										<core:ListItem key="" text="" />
+										<core:ListItem key="{MasterData>Z78abbr}" text="{MasterData>Z78abbr} - {MasterData>Z78abbrtxt}" />
+									</ComboBox>
+									<CheckBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="ckSection" text="All"
+										selected="false" tooltip="All Company" select="onAllSection" enabled="false"/>
+								</form:fields>
+							</form:FormElement>
+							<!--<form:FormElement visible="true" modelContextChange="test">-->
+							<!--	<form:label>-->
+							<!--		<Label text="Company" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+							<!--	</form:label>-->
+							<!--	<form:fields>-->
+							<!--		<ComboBox id="cbCompany" showSecondaryValues="true" items="{ path: '/MasterDataCompanySet', sorter: { path: 'Butxt' }}">-->
+							<!--			<core:ListItem key="{Bukrs}" text="{Butxt}" additionalText="{Bukrs}"/>-->
+							<!--		</ComboBox>-->
+							<!--		<CheckBox xmlns="sap.m" id="chkCompany" text="All" selected="false" tooltip="All Company" select="onAllCompany"/>-->
+							<!--	</form:fields>-->
+							<!--</form:FormElement>-->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Golongan" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox xmlns="sap.m" id="cbLevelFrom" selectionChange="checkLevelFrom" placeholder="Level From" items="{ path: 'MasterData>/MasterDataGolonganSet' }">
+										<core:ListItem key="{MasterData>Persg}" text="{MasterData>Persg}" />
+									</ComboBox>
+									<ComboBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="cbLevelTo"
+										placeholder="Level To" selectionChange="checkLevelFrom" items="{ path: 'MasterData>/MasterDataGolonganSet' }">
+										<core:ListItem key="{MasterData>Persg}" text="{MasterData>Persg}" />
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Approver" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 1" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<!--<MultiComboBox id="cbLvl1"  placeholder="Choose Max 3 User Approval" editable="true" enabled="true" visible="true" width="auto" valueState="None" -->
+									<!--	maxWidth="100%" -->
+									<!--	items="{ path: 'Employee>/GetListEmployeeMutasiSet', sorter: { path: 'Pernr' }, suspended:true}" -->
+									<!--	selectionFinish="validasiUser"-->
+									<!--	loadItems="handleLoadItems"-->
+									<!--	>-->
+									<!--	<core:Item key="{Employee>Pernr}" text="{Employee>Pernr} - {Employee>Sname}"/>-->
+									<!--</MultiComboBox>-->
+									<MultiComboBox id="cbLvl1" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 2" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl2" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 3" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl3" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 4" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl4" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 5" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl5" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 6" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl6" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 7" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl7" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 8" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl8" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 9" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl9" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Level 10" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbLvl10" selectionFinish="validasiUser" placeholder="Choose Max 3 User Approval" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 1" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf1" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 2" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf2" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 3" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf3" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 4" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf4" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 5" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf5" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 6" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf6" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 7" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf7" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 8" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf8" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 9" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf9" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Notified 10" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<MultiComboBox id="cbNtf10" selectionFinish="validasiUserNotified" placeholder="Choose Max 5 User" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="onSave"/>
+					<Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="navBack"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

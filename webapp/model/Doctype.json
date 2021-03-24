@@ -1,0 +1,57 @@
+{
+  "DocTypeCollection": [
+    {
+      "DocTypeCode": "21",
+      "Doctype": "Internal 1 PT"
+    },
+    {
+      "DocTypeCode": "22",
+      "Doctype": "Internal Antar PT"
+    },
+    {
+      "DocTypeCode": "23",
+      "Doctype": "Eksternal 1 PT"
+    },
+    {
+      "DocTypeCode": "24",
+      "Doctype": "Eksternal Antar PT"
+    },
+    
+    {
+      "DocTypeCode": "B1",
+      "Doctype": "Antar Section"
+    },
+    {
+      "DocTypeCode": "Z6",
+      "Doctype": "Pengunduran Diri Normal"
+    },
+    {
+      "DocTypeCode": "62",
+      "Doctype": "Pensiun"
+    },
+    {
+      "DocTypeCode": "C1",
+      "Doctype": "Kelengkapan Data Unit"
+    },
+    {
+      "DocTypeCode": "C2",
+      "Doctype": "Kelengkapan Data HO"
+    },
+    {
+      "DocTypeCode": "Z1",
+      "Doctype": "Promosi"
+    },
+    {
+      "DocTypeCode": "41",
+      "Doctype": "Demosi"
+    },
+    {
+      "DocTypeCode": "E1",
+      "Doctype": "Change Personal Data"
+    },
+    {
+      "DocTypeCode": "E2",
+      "Doctype": "Change Data Agama"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+	"cols": [
+		{
+			"label": "NIK",
+			"template": "NIK",
+			"width": "5rem"
+		},
+		{
+			"label": "Employee Name",
+			"template": "Name"
+		}
+	]
+}

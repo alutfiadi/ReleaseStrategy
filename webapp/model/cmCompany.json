@@ -1,0 +1,13 @@
+{
+	"cols": [
+		{
+			"label": "Company Code",
+			"template": "Bukrs",
+			"width": "5rem"
+		},
+		{
+			"label": "Company",
+			"template": "Butxt"
+		}
+	]
+}

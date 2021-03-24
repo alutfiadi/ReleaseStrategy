@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZHCM_MASTER_DATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="MasterDataPosition" sap:content-version="1">
+				<Key><PropertyRef Name="Objid"/></Key><Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false"
+					sap:updatable="false"/><Property Name="McStext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataJabatan" sap:content-version="1">
+				<Key><PropertyRef Name="Objid"/></Key><Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="McStext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="MasterDataGolongan" sap:content-version="1">
+				<Key><PropertyRef Name="Persk"/></Key><Property Name="Persk" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="EE subgroup" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataReasonPromosi" sap:content-version="1">
+				<Key><PropertyRef Name="Massn"/></Key><Property Name="Massn" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Action Type" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Massg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Reason f.Action"
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataReasonDemosi" sap:content-version="1">
+				<Key><PropertyRef Name="Massn"/></Key><Property Name="Massn" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Action Type" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Massg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Reason f.Action"
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataReasonMutasi" sap:content-version="1">
+				<Key><PropertyRef Name="Massn"/></Key><Property Name="Massn" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Action Type" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Massg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Reason f.Action"
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataReasonTerminasi" sap:content-version="1">
+				<Key><PropertyRef Name="Massn"/></Key><Property Name="Massn" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Action Type" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Massg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Reason f.Action"
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataMaritalStatus" sap:content-version="1">
+				<Key><PropertyRef Name="Sprsl"/><PropertyRef Name="Famst"/></Key><Property Name="Sprsl" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Famst" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Marital stat." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="MasterDataReligion" sap:content-version="1">
+				<Key><PropertyRef Name="Sprsl"/><PropertyRef Name="Konfe"/></Key><Property Name="Sprsl" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Konfe" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Religion" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AbbreviationUnit" sap:content-version="1">
+				<Key><PropertyRef Name="Busns"/><PropertyRef Name="Z12abbr"/></Key><Property Name="Busns" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Bussines" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z12abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Unit" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z12abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AbbreviationDivisi" sap:content-version="1">
+				<Key><PropertyRef Name="Busns"/><PropertyRef Name="Z12abbr"/><PropertyRef Name="Z34abbr"/></Key><Property Name="Busns" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Bussines" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z12abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z34abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Divisi Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z12abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z34abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AbbreviationDepartement" sap:content-version="1">
+				<Key><PropertyRef Name="Busns"/><PropertyRef Name="Z12abbr"/><PropertyRef Name="Z34abbr"/><PropertyRef Name="Z56abbr"/></Key><Property Name="Busns" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Bussines" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z12abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Unit" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z34abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Divisi Code" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z56abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Departement Co."
+					sap:creatable="false" sap:updatable="false"/><Property Name="Z12abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z34abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z56abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="AbbreviationSection" sap:content-version="1">
+				<Key><PropertyRef Name="Busns"/><PropertyRef Name="Z12abbr"/><PropertyRef Name="Z34abbr"/><PropertyRef Name="Z56abbr"/><PropertyRef Name="Z78abbr"/></Key><Property Name="Busns" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Bussines" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z12abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z34abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Divisi Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z56abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Departement Co."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z78abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Section Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z12abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z34abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z56abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Z78abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="MasterDataCompany" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/></Key><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Butxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Company Name" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataPersonnelAreas" sap:content-version="1">
+				<Key><PropertyRef Name="Persa"/></Key><Property Name="Persa" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Personnel area" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="PA text" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataDivision" sap:content-version="1">
+				<Key><PropertyRef Name="Objid"/></Key><Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Stext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false"/><Property Name="McShort" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Object abbr."
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataDepartement" sap:content-version="1">
+				<Key><PropertyRef Name="Objid"/></Key><Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Stext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false"/><Property Name="McShort" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Object abbr."
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="MasterDataSection" sap:content-version="1">
+				<Key><PropertyRef Name="Objid"/></Key><Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Stext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false"/><Property Name="McShort" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Object abbr."
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="PositionCode" sap:content-version="1">
+				<Key><PropertyRef Name="Pstncode"/></Key><Property Name="Pstncode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Kode Posisi"/><Property Name="Pstnname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Nama Posisi" sap:sortable="false"/></EntityType>
+			<EntityType Name="PositionMapping" sap:content-version="1">
+				<Key><PropertyRef Name="Pstncode"/><PropertyRef Name="Pernr"/></Key><Property Name="Pstncode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Kode Posisi" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false"
+					sap:updatable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="AbbreviationCode" sap:content-version="1">
+				<Key><PropertyRef Name="Abbr"/></Key><Property Name="Abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Kode Abbreviation"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Abbreviation Desc."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AbbreviationMapping" sap:content-version="1">
+				<Key><PropertyRef Name="Busns"/><PropertyRef Name="Z12abbr"/><PropertyRef Name="Z34abbr"/><PropertyRef Name="Z56abbr"/><PropertyRef Name="Z78abbr"/></Key><Property Name="Busns" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Bussines" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z12abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Unit" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z34abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Divisi Code" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z56abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Departement Co."
+					sap:creatable="false" sap:updatable="false"/><Property Name="Z78abbr" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Section Code" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Z12abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Unit Desc"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Z34abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Unit Desc"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Z56abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Unit Desc"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Z78abbrtxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Unit Desc"
+					sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityContainer Name="ZHCM_MASTER_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="MasterDataPositionSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataPosition" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataJabatanSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataJabatan" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataGolonganSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataGolongan" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataReasonPromosiSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataReasonPromosi" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataReasonDemosiSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataReasonDemosi" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataReasonMutasiSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataReasonMutasi" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataReasonTerminasiSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataReasonTerminasi" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataMaritalStatusSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataMaritalStatus" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataReligionSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataReligion" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AbbreviationUnitSet" EntityType="ZHCM_MASTER_DATA_SRV.AbbreviationUnit" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AbbreviationDivisiSet" EntityType="ZHCM_MASTER_DATA_SRV.AbbreviationDivisi" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AbbreviationDepartementSet" EntityType="ZHCM_MASTER_DATA_SRV.AbbreviationDepartement" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AbbreviationSectionSet" EntityType="ZHCM_MASTER_DATA_SRV.AbbreviationSection" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataCompanySet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataCompany" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataPersonnelAreasSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataPersonnelAreas" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataDivisionSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataDivision" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataDepartementSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataDepartement" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MasterDataSectionSet" EntityType="ZHCM_MASTER_DATA_SRV.MasterDataSection" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="PositionCodeSet" EntityType="ZHCM_MASTER_DATA_SRV.PositionCode" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="PositionMappingSet" EntityType="ZHCM_MASTER_DATA_SRV.PositionMapping" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AbbreviationCodeSet" EntityType="ZHCM_MASTER_DATA_SRV.AbbreviationCode" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="AbbreviationMappingSet" EntityType="ZHCM_MASTER_DATA_SRV.AbbreviationMapping" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link rel="self"
+				href="https://webidecp-nkapqkesbn.dispatcher.jp1.hana.ondemand.com/destinations/IDDCLNT777/sap/opu/odata/sap/ZHCM_MASTER_DATA_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-nkapqkesbn.dispatcher.jp1.hana.ondemand.com/destinations/IDDCLNT777/sap/opu/odata/sap/ZHCM_MASTER_DATA_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
