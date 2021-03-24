@@ -198,55 +198,52 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oDialog = this.byId("BusyDialog");
 			oDialog.open();
 			var that = this;
-			var sUrlMutasi = "/sap/opu/odata/sap/ZHCM_MUTASI_SRV";
-			var oModelMutasi = new sap.ui.model.odata.ODataModel(sUrlMutasi, true);
-			this.getView().setModel(oModelMutasi);
-			oModelMutasi.read("/GetListEmployeeMutasiSet",
-				null, null, true,
-				function (oData, oReponse) {
-					var arrayData = oData.results;
-					var jsondata = {
-						items: arrayData
-					};
-					var jsonModel = new sap.ui.model.json.JSONModel();
-					jsonModel.setSizeLimit(1000);
-					jsonModel.setData(jsondata);
+				var sUrlMutasi = "/sap/opu/odata/sap/ZHCM_MUTASI_SRV";
+				var oModelMutasi = new sap.ui.model.odata.ODataModel(sUrlMutasi, true);
+				var oFilterEmp = new Filter("Otorisasi", FilterOperator.EQ, 'X');
+				this.getView().setModel(oModelMutasi);
+				oModelMutasi.read("/GetListEmployeeMutasiSet", {
+					filters: [oFilterEmp],
+					success: function (oData, response) {
+						var arrayData = oData.results;
+						var jsondata = {
+							items: arrayData
+						};
+						var jsonModel = new sap.ui.model.json.JSONModel();
+						jsonModel.setSizeLimit(1000);
+						jsonModel.setData(jsondata);
 
-					//Level
-					for (var i = 1; i <= 10; i++) {
-						var cbLvl = that.byId("cbLvl" + i);
-						cbLvl.setModel(jsonModel);
-						cbLvl.bindAggregation("items", "/items", new sap.ui.core.ListItem({
+						//Level
+						for (var i = 1; i <= 10; i++) {
+							var cbLvl = that.byId("cbLvl" + i);
+							cbLvl.setModel(jsonModel);
+							cbLvl.bindAggregation("items", "/items", new sap.ui.core.ListItem({
+								key: "{Pernr}",
+								text: "{Pernr} - {Sname}"
+							}));
+
+						}
+
+						//Notified
+						for (var j = 1; j <= 10; j++) {
+							var cbNtf = that.byId("cbNtf" + j);
+							cbNtf.setModel(jsonModel);
+							cbNtf.bindAggregation("items", "/items", new sap.ui.core.ListItem({
+								key: "{Pernr}",
+								text: "{Pernr} - {Sname}"
+							}));
+
+						}
+
+						var cbRequester = that.byId("cbRequester");
+						cbRequester.setModel(jsonModel);
+						cbRequester.bindAggregation("items", "/items", new sap.ui.core.ListItem({
 							key: "{Pernr}",
 							text: "{Pernr} - {Sname}"
 						}));
-
+						oDialog.close();
 					}
-
-					//Notified
-					for (var j = 1; j <= 10; j++) {
-						var cbNtf = that.byId("cbNtf" + j);
-						cbNtf.setModel(jsonModel);
-						cbNtf.bindAggregation("items", "/items", new sap.ui.core.ListItem({
-							key: "{Pernr}",
-							text: "{Pernr} - {Sname}"
-						}));
-
-					}
-
-					var cbRequester = that.byId("cbRequester");
-					cbRequester.setModel(jsonModel);
-					cbRequester.bindAggregation("items", "/items", new sap.ui.core.ListItem({
-						key: "{Pernr}",
-						text: "{Pernr} - {Sname}"
-					}));
-					oDialog.close();
-				},
-				function (error) {
-					oDialog.close();
-					//if the call to odata fails, handle the error here
-				}
-			);
+				});
 		},
 		_onObjectMatched: function (oEvent) {
 			// this.getView().bindElement({
@@ -291,6 +288,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			if (this.ReleaseStrategtyData.Fromto != "") {
 				this.byId("elFromTo").setVisible(true);
+			}else{
+				this.byId("elFromTo").setVisible(false);
 			}
 			//ISI PARTAMETER
 			var oFilterBusiness = new sap.ui.model.Filter("Busns", sap.ui.model.FilterOperator.EQ, this.ReleaseStrategtyData.Busns);

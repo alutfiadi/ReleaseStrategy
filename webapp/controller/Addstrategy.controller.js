@@ -219,8 +219,8 @@ sap.ui.define([
 				});
 
 				//Combobox Doctype
-				this.oDocTypeModel = new JSONModel(sap.ui.require.toUrl("AL/ReleaseStrategy/model") + "/Doctype.json");
-				this.getView().byId("cbDocType").setModel(this.oDocTypeModel);
+				// this.oDocTypeModel = new JSONModel(sap.ui.require.toUrl("AL/ReleaseStrategy/model") + "/Doctype.json");
+				// this.getView().byId("cbDocType").setModel(this.oDocTypeModel);
 				this.getView().byId("cbDocType").setFilterFunction(function (sTerm, oItem) {
 					// A case-insensitive 'string contains' filter
 					return oItem.getText().match(new RegExp(sTerm, "i")) || oItem.getKey().match(new RegExp(sTerm, "i")) || oItem.getAdditionalText()
@@ -228,8 +228,8 @@ sap.ui.define([
 				});
 
 				//Combobox Business
-				this.oDocTypeModel = new JSONModel(sap.ui.require.toUrl("AL/ReleaseStrategy/model") + "/Business.json");
-				this.getView().byId("cbBusiness").setModel(this.oDocTypeModel);
+				// this.oDocTypeModel = new JSONModel(sap.ui.require.toUrl("model") + "/Business.json");
+				// this.getView().byId("cbBusiness").setModel(this.oDocTypeModel);
 				this.getView().byId("cbBusiness").setFilterFunction(function (sTerm, oItem) {
 					// A case-insensitive 'string contains' filter
 					return oItem.getText().match(new RegExp(sTerm, "i")) || oItem.getKey().match(new RegExp(sTerm, "i")) || oItem.getAdditionalText()

@@ -131,7 +131,9 @@
 				"clearTarget": false,
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": ["ReleaseStrategy"]
+					"target": [
+						"ReleaseStrategy"
+					]
 				}
 			},
 			"targets": {
@@ -185,39 +187,68 @@
 					"transition": "show"
 				}
 			},
-			"routes": [{
-				"pattern": "ReleaseStrategy/:context:",
-				"name": "ReleaseStrategy",
-				"target": ["ReleaseStrategy"]
-			}, {
-				"pattern": "",
-				"name": "Addstrategy",
-				"target": ["ReleaseStrategy"]
-			}, {
-				"pattern": "Addstrategy/:context:",
-				"name": "Addstrategy",
-				"target": ["Addstrategy"]
-			}, {
-				"pattern": "Editstrategy/:context:",
-				"name": "Editstrategy",
-				"target": ["Editstrategy"]
-			}, {
-				"pattern": "Editcode/{rcPath}",
-				"name": "Editcode",
-				"target": ["Editcode"]
-			}, {
-				"pattern": "EditGroup/{rgPath}",
-				"name": "EditGroup",
-				"target": ["EditGroup"]
-			}, {
-				"pattern": "Addgroup_1/:context:",
-				"name": "Addgroup_1",
-				"target": ["Addgroup_1"]
-			}, {
-				"pattern": "Addcode_1/:context:",
-				"name": "Addcode_1",
-				"target": ["Addcode_1"]
-			}]
+			"routes": [
+				{
+					"pattern": "ReleaseStrategy/:context:",
+					"name": "ReleaseStrategy",
+					"target": [
+						"ReleaseStrategy"
+					]
+				},
+				{
+					"pattern": "",
+					"name": "Addstrategy",
+					"target": [
+						"ReleaseStrategy"
+					]
+				},
+				{
+					"pattern": "Addstrategy/:context:",
+					"name": "Addstrategy",
+					"target": [
+						"Addstrategy"
+					]
+				},
+				{
+					"pattern": "Editstrategy/:context:",
+					"name": "Editstrategy",
+					"target": [
+						"Editstrategy"
+					]
+				},
+				{
+					"pattern": "Editcode/{rcPath}",
+					"name": "Editcode",
+					"target": [
+						"Editcode"
+					]
+				},
+				{
+					"pattern": "EditGroup/{rgPath}",
+					"name": "EditGroup",
+					"target": [
+						"EditGroup"
+					]
+				},
+				{
+					"pattern": "Addgroup_1/:context:",
+					"name": "Addgroup_1",
+					"target": [
+						"Addgroup_1"
+					]
+				},
+				{
+					"pattern": "Addcode_1/:context:",
+					"name": "Addcode_1",
+					"target": [
+						"Addcode_1"
+					]
+				}
+			]
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zempworkflow/webapp",
+		"_version": "1.1.0"
 	}
 }
