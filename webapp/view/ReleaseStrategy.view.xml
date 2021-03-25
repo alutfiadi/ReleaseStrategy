@@ -28,7 +28,7 @@
                                         <content>
                                             <Title text="Release Strategy" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
                                             <ToolbarSpacer width=""/>
-                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="auto"/>
+                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="auto" search="onFilterStrategy"/>
                                             <OverflowToolbarButton text="Add" type="Transparent" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress"/>
                                             <!--<OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
                                         </content>
@@ -75,14 +75,14 @@
                     </IconTabFilter>
                     <IconTabFilter icon="" iconColor="Default" text="Code" count="Release" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
                         <content>
-                            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{path:'ReleaseStrategy>/ReleaseCodeSet',parameters:{select:'Rccode,Rctxt,Rgcode'},sorter:[{path:'Rgcode',descending:false}]}">
+                            <Table id="tRcode" width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{path:'ReleaseStrategy>/ReleaseCodeSet',parameters:{select:'Rccode,Rctxt,Rgcode'},sorter:[{path:'Rgcode',descending:false}]}">
                                 <infoToolbar/>
                                 <headerToolbar>
                                     <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
                                         <content>
                                             <Text text="Release Code" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                             <ToolbarSpacer width=""/>
-                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="auto" />
+                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="auto" search="onFilterCodes"/>
                                             <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress1"/>
                                             <!--<OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
                                         </content>

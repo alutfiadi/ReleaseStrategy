@@ -328,6 +328,38 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
 
+		},
+		onFilterCodes: function (oEvent) {
+
+			// build filter array
+			var aFilter = [];
+			var sQuery = oEvent.getParameter("query");
+			if (sQuery) {
+				aFilter.push(new Filter("Rccode", FilterOperator.Contains, sQuery));
+				aFilter.push(new Filter("Rctxt", FilterOperator.Contains, sQuery));
+			}
+
+			// filter binding
+			var oList = this.getView().byId("tRcode");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
+
+		},
+		onFilterStrategy: function (oEvent) {
+
+			// build filter array
+			var aFilter = [];
+			var sQuery = oEvent.getParameter("query");
+			if (sQuery) {
+				aFilter.push(new Filter("Rscode", FilterOperator.Contains, sQuery));
+				aFilter.push(new Filter("Rstxt", FilterOperator.Contains, sQuery));
+			}
+
+			// filter binding
+			var oList = this.getView().byId("tReleaseStrategy");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
+
 		}
 
 	});
