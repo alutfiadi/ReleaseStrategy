@@ -10,18 +10,18 @@
 				<form:formContainers>
 					<form:FormContainer visible="true">
 						<form:formElements>
+							<!--<form:FormElement visible="true">-->
+							<!--	<form:label>-->
+							<!--		<Label text="Release Strategy" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+							<!--	</form:label>-->
+							<!--	<form:fields>-->
+							<!--		<Input id="iRscode" value="" placeholder="Release Strategy Code" type="Text" showValueHelp="false" enabled="true" visible="true"-->
+							<!--			width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="8"/>-->
+							<!--	</form:fields>-->
+							<!--</form:FormElement>-->
 							<form:FormElement visible="true">
 								<form:label>
-									<Label text="Release Strategy" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-								</form:label>
-								<form:fields>
-									<Input id="iRscode" value="" placeholder="Release Strategy Code" type="Text" showValueHelp="false" enabled="true" visible="true"
-										width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="8"/>
-								</form:fields>
-							</form:FormElement>
-							<form:FormElement visible="true">
-								<form:label>
-									<Label  text="Release Strategy Desc" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
+									<Label  text="Release Strategy" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
 										visible="true"/>
 								</form:label>
 								<form:fields>

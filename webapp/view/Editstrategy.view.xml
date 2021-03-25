@@ -88,7 +88,7 @@
 									<Label text="Document Type" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox id="cbDocType" placeholder="Choose Document Type" editable="true" enabled="true" visible="true" width="auto" valueState="None"
+									<ComboBox id="cbDocType" placeholder="Choose Document Type" editable="false" enabled="true" visible="true" width="auto" valueState="None"
 										maxWidth="100%" selectionChange="onChangeDocType" selectedKey="{selectedReleaseStrategy>/Doctype}">
 										<core:ListItem key="21" text="21 - Internal 1 PT"/>
 										<core:ListItem key="22" text="22 - Internal Antar PT"/>

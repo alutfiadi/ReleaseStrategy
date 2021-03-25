@@ -3,7 +3,17 @@
         <content>
             <IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="Ok">
                 <items>
-                    <IconTabFilter icon="" iconColor="Default" text="Strategy" count="Release" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                    <IconTabFilter 
+                    	icon="" 
+                    	iconColor="Default" 
+                    	text="Strategy" 
+                    	count="Release" 
+                    	design="Vertical" 
+                    	showAll="false" 
+                    	textDirection="Inherit" 
+                    	enabled="true" 
+                    	visible="true" 
+                    	iconDensityAware="false">
                         <content>
                             <Table id="tReleaseStrategy" width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="10" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{path:'ReleaseStrategy>/ReleaseStrategySet', sorter:[{path:'Rscode',descending:false}], templateShareable:true}">
                                 <infoToolbar>

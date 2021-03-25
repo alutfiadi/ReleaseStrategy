@@ -282,50 +282,51 @@ sap.ui.define([
 			},
 			validasiHeader: function () {
 				var bValidationError = false;
-				var iRscode = this.getView().byId("iRscode").getValue();
+				//var iRscode = this.getView().byId("iRscode").getValue();
 				var iRstxt = this.getView().byId("iRstxt").getValue();
 				var cbDocType = this.getView().byId("cbDocType").getSelectedKey();
 				var cbBusiness = this.getView().byId("cbBusiness").getSelectedKey();
 				var cbUnit = this.getView().byId("cbUnit").getSelectedKey();
 
-				if (iRscode === null || iRscode == "") {
+				// if (iRscode === null || iRscode == "") {
+				// 	bValidationError = true;
+				// 	this.getView().byId("iRscode").setValueState("Error");
+				// 	this.getView().byId("iRstxt").setValueState("None");
+				// 	this.getView().byId("cbDocType").setValueState("None");
+				// 	this.getView().byId("cbBusiness").setValueState("None");
+				// 	this.getView().byId("cbUnit").setValueState("None");
+				// } else 
+				if (iRstxt === null || iRstxt == "") {
 					bValidationError = true;
-					this.getView().byId("iRscode").setValueState("Error");
-					this.getView().byId("iRstxt").setValueState("None");
-					this.getView().byId("cbDocType").setValueState("None");
-					this.getView().byId("cbBusiness").setValueState("None");
-					this.getView().byId("cbUnit").setValueState("None");
-				} else if (iRstxt === null || iRstxt == "") {
-					bValidationError = true;
-					this.getView().byId("iRscode").setValueState("None");
+					//this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("Error");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("None");
 				} else if (cbDocType === null || cbDocType == "") {
 					bValidationError = true;
-					this.getView().byId("iRscode").setValueState("None");
+					//this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("Error");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("None");
 				} else if (cbBusiness === null || cbBusiness == "") {
 					bValidationError = true;
-					this.getView().byId("iRscode").setValueState("None");
+					//this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("Error");
 					this.getView().byId("cbUnit").setValueState("None");
 				} else if (cbUnit === null || cbUnit == "") {
 					bValidationError = true;
-					this.getView().byId("iRscode").setValueState("None");
+					//this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("None");
 					this.getView().byId("cbUnit").setValueState("Error");
 				} else {
 					bValidationError = false;
-					this.getView().byId("iRscode").setValueState("None");
+					//this.getView().byId("iRscode").setValueState("None");
 					this.getView().byId("iRstxt").setValueState("None");
 					this.getView().byId("cbDocType").setValueState("None");
 					this.getView().byId("cbBusiness").setValueState("None");
@@ -416,8 +417,10 @@ sap.ui.define([
 
 				//hapus existed value 
 				this.byId("cbDivision").setValue("");
+				this.byId("cbDivision").setEditable(true);
 				this.byId("cbDepartment").setValue("");
 				this.byId("cbSection").setValue("");
+				this.byId("ckDivision").setSelected(false);
 			},
 			onChangeDivision: function (oEvent) {
 				var selectedUnit = this.byId("cbUnit").getSelectedItem().getKey();
@@ -436,7 +439,9 @@ sap.ui.define([
 
 				this.getView().byId("cbDepartment").getBinding("items").filter(oFilter);
 				this.byId("cbDepartment").setValue("");
+				this.byId("cbDepartment").setEditable(true);
 				this.byId("cbSection").setValue("");
+				this.byId("ckDepartment").setSelected(false);
 			},
 			onChangeDepartment: function (oEvent) {
 				var selectedDepartment = this.byId("cbDepartment").getSelectedItem().getKey();
@@ -457,6 +462,8 @@ sap.ui.define([
 
 				this.getView().byId("cbSection").getBinding("items").filter(oFilter);
 				this.byId("cbSection").setValue("");
+				this.byId("cbSection").setEditable(true);
+				this.byId("ckSection").setSelected(false);
 			},
 			onSave: function (oEvent) {
 				// var oBindingContext = oEvent.getSource().getBindingContext();
@@ -470,7 +477,7 @@ sap.ui.define([
 				if (!this.validasiHeader()) {
 					var oDialog = this.byId("BusyDialog");
 					//oDialog.open();
-					var iRscode = this.getView().byId("iRscode").getValue();
+					//var iRscode = this.getView().byId("iRscode").getValue();
 					var iRstxt = this.getView().byId("iRstxt").getValue();
 					var cbCode = this.getView().byId("cbCode").getSelectedKey();
 					var iLimit = this.getView().byId("iLimit").getValue();
@@ -484,7 +491,6 @@ sap.ui.define([
 					var cbSection = this.getView().byId("cbSection").getSelectedKey();
 					var cbLevelFrom = this.getView().byId("cbLevelFrom").getSelectedKey();
 					var cbLevelTo = this.getView().byId("cbLevelTo").getSelectedKey();
-					var cbFromTo = this.getView().byId("cbFromTo").getSelectedKey();
 
 					//checkbox value
 					var ckDivision = this.getView().byId("ckDivision").getSelected();
@@ -507,7 +513,7 @@ sap.ui.define([
 						var cbLvl = this.getView().byId("cbLvl" + i).getSelectedKeys();
 						var cbNtf = this.getView().byId("cbNtf" + i).getSelectedKeys();
 						var level = {
-							"Rscode": iRscode,
+							"Rscode": "",
 							"Levl": i.toString(),
 							"Apprv1": cbLvl[0],
 							"Apprv2": cbLvl[1],
@@ -524,7 +530,7 @@ sap.ui.define([
 					var releaseStrategy = {
 						"Doctype": cbDocType,
 						"ChangeInd": "I",
-						"Rscode": iRscode,
+						"Rscode": "",
 						"Fromto": cbFromTo,
 						"Rstxt": iRstxt,
 						"Rccode": cbCode,
@@ -572,20 +578,27 @@ sap.ui.define([
 
 			},
 			clearData: function () {
-				this.getView().byId("iRscode").setValue("");
+				//this.getView().byId("iRscode").setValue("");
 				this.getView().byId("iRstxt").setValue("");
 				this.getView().byId("iLimit").setValue("");
 				this.getView().byId("cbCode").setValue("");
+				this.getView().byId("cbGroup").setSelectedKey("");
 				this.getView().byId("cbRequester").setSelectedKeys(null);
-				this.getView().byId("cbDocType").setValue("");
-				this.getView().byId("cbBusiness").setValue("");
-				this.getView().byId("cbUnit").setValue("");
-				this.getView().byId("cbFromTo").setValue("");
-				this.getView().byId("cbDivision").setValue("");
-				this.getView().byId("cbDepartment").setValue("");
-				this.getView().byId("cbSection").setValue("");
-				this.getView().byId("cbLevelFrom").setValue("");
-				this.getView().byId("cbLevelTo").setValue("");
+				this.getView().byId("cbDocType").setSelectedKey("");
+				this.getView().byId("cbBusiness").setSelectedKey("");
+				this.getView().byId("cbUnit").setSelectedKey("");
+				this.getView().byId("cbFromTo").setSelectedKey("");
+				this.getView().byId("cbDivision").setSelectedKey("");
+				this.getView().byId("cbDepartment").setSelectedKey("");
+				this.getView().byId("cbSection").setSelectedKey("");
+				this.getView().byId("cbLevelFrom").setSelectedKey("");
+				this.getView().byId("cbLevelTo").setSelectedKey("");
+				this.byId("ckDivision").setSelected(false);
+				this.byId("ckDepartment").setSelected(false);
+				this.byId("ckSection").setSelected(false);
+				this.getView().byId("cbDivision").setEditable(true);
+				this.getView().byId("cbDepartment").setEditable(true);
+				this.getView().byId("cbSection").setEditable(true);
 				for (var i = 1; i <= 10; i++) {
 					this.getView().byId("cbLvl" + i).setSelectedKeys(null);
 					this.getView().byId("cbNtf" + i).setSelectedKeys(null);

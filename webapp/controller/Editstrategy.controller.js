@@ -277,14 +277,23 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			if (this.ReleaseStrategtyData.Div == "All") {
 				this.getView().byId("ckDivision").setSelected(true);
 				this.getView().byId("cbDivision").setEditable(false);
+			}else{
+				this.getView().byId("ckDivision").setSelected(false);
+				this.getView().byId("cbDivision").setEditable(true);
 			}
 			if (this.ReleaseStrategtyData.Dept == "All") {
 				this.getView().byId("ckDepartment").setSelected(true);
 				this.getView().byId("cbDepartment").setEditable(false);
+			}else{
+				this.getView().byId("ckDepartment").setSelected(false);
+				this.getView().byId("cbDepartment").setEditable(true);
 			}
 			if (this.ReleaseStrategtyData.Sctn == "All") {
 				this.getView().byId("ckSection").setSelected(true);
 				this.getView().byId("cbSection").setEditable(false);
+			}else{
+				this.getView().byId("ckSection").setSelected(false);
+				this.getView().byId("cbSection").setEditable(true);
 			}
 			if (this.ReleaseStrategtyData.Fromto != "") {
 				this.byId("elFromTo").setVisible(true);
