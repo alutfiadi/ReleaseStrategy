@@ -122,7 +122,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// this.oRouter.getTarget("Editstrategy").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Editstrategy").attachPatternMatched(this._onObjectMatched, this);
-			
+
 			var sUrl = "/sap/opu/odata/sap/ZHCM_WF_ENGINE_SRV/";
 			this.oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 
@@ -198,52 +198,52 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oDialog = this.byId("BusyDialog");
 			oDialog.open();
 			var that = this;
-				var sUrlMutasi = "/sap/opu/odata/sap/ZHCM_MUTASI_SRV";
-				var oModelMutasi = new sap.ui.model.odata.ODataModel(sUrlMutasi, true);
-				var oFilterEmp = new Filter("Otorisasi", FilterOperator.EQ, 'X');
-				this.getView().setModel(oModelMutasi);
-				oModelMutasi.read("/GetListEmployeeMutasiSet", {
-					filters: [oFilterEmp],
-					success: function (oData, response) {
-						var arrayData = oData.results;
-						var jsondata = {
-							items: arrayData
-						};
-						var jsonModel = new sap.ui.model.json.JSONModel();
-						jsonModel.setSizeLimit(1000);
-						jsonModel.setData(jsondata);
+			var sUrlMutasi = "/sap/opu/odata/sap/ZHCM_MUTASI_SRV";
+			var oModelMutasi = new sap.ui.model.odata.ODataModel(sUrlMutasi, true);
+			var oFilterEmp = new Filter("Otorisasi", FilterOperator.EQ, 'X');
+			this.getView().setModel(oModelMutasi);
+			oModelMutasi.read("/GetListEmployeeMutasiSet", {
+				filters: [oFilterEmp],
+				success: function (oData, response) {
+					var arrayData = oData.results;
+					var jsondata = {
+						items: arrayData
+					};
+					var jsonModel = new sap.ui.model.json.JSONModel();
+					jsonModel.setSizeLimit(1000);
+					jsonModel.setData(jsondata);
 
-						//Level
-						for (var i = 1; i <= 10; i++) {
-							var cbLvl = that.byId("cbLvl" + i);
-							cbLvl.setModel(jsonModel);
-							cbLvl.bindAggregation("items", "/items", new sap.ui.core.ListItem({
-								key: "{Pernr}",
-								text: "{Pernr} - {Sname}"
-							}));
-
-						}
-
-						//Notified
-						for (var j = 1; j <= 10; j++) {
-							var cbNtf = that.byId("cbNtf" + j);
-							cbNtf.setModel(jsonModel);
-							cbNtf.bindAggregation("items", "/items", new sap.ui.core.ListItem({
-								key: "{Pernr}",
-								text: "{Pernr} - {Sname}"
-							}));
-
-						}
-
-						var cbRequester = that.byId("cbRequester");
-						cbRequester.setModel(jsonModel);
-						cbRequester.bindAggregation("items", "/items", new sap.ui.core.ListItem({
+					//Level
+					for (var i = 1; i <= 10; i++) {
+						var cbLvl = that.byId("cbLvl" + i);
+						cbLvl.setModel(jsonModel);
+						cbLvl.bindAggregation("items", "/items", new sap.ui.core.ListItem({
 							key: "{Pernr}",
 							text: "{Pernr} - {Sname}"
 						}));
-						oDialog.close();
+
 					}
-				});
+
+					//Notified
+					for (var j = 1; j <= 10; j++) {
+						var cbNtf = that.byId("cbNtf" + j);
+						cbNtf.setModel(jsonModel);
+						cbNtf.bindAggregation("items", "/items", new sap.ui.core.ListItem({
+							key: "{Pernr}",
+							text: "{Pernr} - {Sname}"
+						}));
+
+					}
+
+					var cbRequester = that.byId("cbRequester");
+					cbRequester.setModel(jsonModel);
+					cbRequester.bindAggregation("items", "/items", new sap.ui.core.ListItem({
+						key: "{Pernr}",
+						text: "{Pernr} - {Sname}"
+					}));
+					oDialog.close();
+				}
+			});
 		},
 		_onObjectMatched: function (oEvent) {
 			// this.getView().bindElement({
@@ -277,27 +277,27 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			if (this.ReleaseStrategtyData.Div == "All") {
 				this.getView().byId("ckDivision").setSelected(true);
 				this.getView().byId("cbDivision").setEditable(false);
-			}else{
+			} else {
 				this.getView().byId("ckDivision").setSelected(false);
 				this.getView().byId("cbDivision").setEditable(true);
 			}
 			if (this.ReleaseStrategtyData.Dept == "All") {
 				this.getView().byId("ckDepartment").setSelected(true);
 				this.getView().byId("cbDepartment").setEditable(false);
-			}else{
+			} else {
 				this.getView().byId("ckDepartment").setSelected(false);
 				this.getView().byId("cbDepartment").setEditable(true);
 			}
 			if (this.ReleaseStrategtyData.Sctn == "All") {
 				this.getView().byId("ckSection").setSelected(true);
 				this.getView().byId("cbSection").setEditable(false);
-			}else{
+			} else {
 				this.getView().byId("ckSection").setSelected(false);
 				this.getView().byId("cbSection").setEditable(true);
 			}
 			if (this.ReleaseStrategtyData.Fromto != "") {
 				this.byId("elFromTo").setVisible(true);
-			}else{
+			} else {
 				this.byId("elFromTo").setVisible(false);
 			}
 			//ISI PARTAMETER
@@ -478,7 +478,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.byId("cbSection").setEnabled(true);
 			this.byId("ckSection").setEnabled(true);
 			this.byId("ckSection").setSelected(false);
-			
 
 			var oFilter = new Filter({
 				filters: [
@@ -579,7 +578,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			var releaseStrategy = {
 				"Doctype": cbDocType,
-				"ChangeInd" : "U",
+				"ChangeInd": "U",
 				"Rscode": iRscode,
 				"Fromto": cbFromTo,
 				"Rstxt": iRstxt,
@@ -604,15 +603,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			});
 
 			//set model to this view
+			var oThis = this;
 			this.getView().setModel(this.oModel);
 			this.oModel.create("/ReleaseStrategySet", releaseStrategy, {
 				success: function (oData, oResponse) {
 					// Success
 					oDialog.close();
-
-					MessageToast.show("Change Successfully");
-					this.clearData();
-					this.navBack();
+					MessageBox.success("Release Strategy " + iRscode + " Successfully Updated.", {
+						onClose: function () {
+							// 	// oThis.naviBack();
+							oThis.clearData();
+							oThis.navBack();
+						}
+					});
+					// MessageToast.show("Change Successfully");
+					// this.clearData();
+					// this.navBack();
 				}.bind(this),
 				error: function (oError) {
 					oDialog.close();
@@ -659,7 +665,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.getView().byId(myBox).setValueStateText("");
 			}
 		},
-		
+
 		navBack: function () {
 			this.oRouter.navTo("ReleaseStrategy", true);
 

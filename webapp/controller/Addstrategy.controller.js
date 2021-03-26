@@ -554,14 +554,27 @@ sap.ui.define([
 					});
 
 					//set model to this view
+					var oThis = this;
 					this.getView().setModel(this.oModel);
 					this.oModel.create("/ReleaseStrategySet", releaseStrategy, {
 						success: function (oData, oResponse) {
 							// Success
 							oDialog.close();
-							MessageToast.show("Submit successfully");
-							this.clearData();
-							this.navBack();
+							var header = JSON.parse(oResponse.headers["sap-message"]);
+							var message = header["message"];
+							
+							//MessageBox.success("Release Strategy " + iRstxt + " Successfully Updated.", {
+							MessageBox.success("Release Strategy " + message + " Successfully Created", {	
+								onClose: function () {
+									// 	// oThis.naviBack();
+									oThis.clearData();
+									oThis.navBack();
+								}
+							});
+							
+							// MessageToast.show("Submit successfully");
+							// this.clearData();
+							// this.navBack();
 						}.bind(this),
 						error: function (oError) {
 							oDialog.close();
@@ -581,7 +594,7 @@ sap.ui.define([
 				//this.getView().byId("iRscode").setValue("");
 				this.getView().byId("iRstxt").setValue("");
 				this.getView().byId("iLimit").setValue("");
-				this.getView().byId("cbCode").setValue("");
+				this.getView().byId("cbCode").setSelectedKey("");
 				this.getView().byId("cbGroup").setSelectedKey("");
 				this.getView().byId("cbRequester").setSelectedKeys(null);
 				this.getView().byId("cbDocType").setSelectedKey("");
@@ -596,9 +609,12 @@ sap.ui.define([
 				this.byId("ckDivision").setSelected(false);
 				this.byId("ckDepartment").setSelected(false);
 				this.byId("ckSection").setSelected(false);
-				this.getView().byId("cbDivision").setEditable(true);
-				this.getView().byId("cbDepartment").setEditable(true);
-				this.getView().byId("cbSection").setEditable(true);
+				this.getView().byId("cbDivision").setEditable(false);
+				this.getView().byId("cbDepartment").setEditable(false);
+				this.getView().byId("cbSection").setEditable(false);
+				this.byId("ckDivision").setEnabled(false);
+				this.byId("ckDepartment").setEnabled(false);
+				this.byId("ckSection").setEnabled(false);
 				for (var i = 1; i <= 10; i++) {
 					this.getView().byId("cbLvl" + i).setSelectedKeys(null);
 					this.getView().byId("cbNtf" + i).setSelectedKeys(null);
