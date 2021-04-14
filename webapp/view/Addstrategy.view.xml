@@ -21,11 +21,11 @@
 							<!--</form:FormElement>-->
 							<form:FormElement visible="true">
 								<form:label>
-									<Label  text="Release Strategy" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
+									<Label  text="Release Strategy Description" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
 										visible="true"/>
 								</form:label>
 								<form:fields>
-									<Input id="iRstxt" placeholder="Release Strategy " type="Text" showValueHelp="false" enabled="true" visible="true" width="auto"
+									<Input id="iRstxt" placeholder="Release Strategy Description" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto"
 										valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="20"/>
 								</form:fields>
 							</form:FormElement>
@@ -164,14 +164,14 @@
 									<Label text="Division" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox id="cbDivision" placeholder="Choose Division" editable="true" enabled="false" visible="true" width="auto" valueState="None"
+									<ComboBox id="cbDivision" placeholder="Choose Division" editable="false" enabled="true" visible="true" width="auto" valueState="None"
 										maxWidth="100%" selectionChange="onChangeDivision" items="{ path: 'MasterData>/AbbreviationDivisiSet', suspended:true}"
 										loadItems="handleLoadItems">
 										<core:ListItem key="" text="" />
 										<core:ListItem key="{MasterData>Z34abbr}" text="{MasterData>Z34abbr} - {MasterData>Z34abbrtxt}"/>
 									</ComboBox>
 									<CheckBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="ckDivision" text="All"
-										selected="false" tooltip="All Company" select="onAllDivision" enabled="false"/>
+										selected="false" tooltip="All Company" select="onAllDivision" editable="false" enabled="true"/>
 								</form:fields>
 							</form:FormElement>
 							<form:FormElement visible="true">
@@ -179,12 +179,12 @@
 									<Label text="Department" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox id="cbDepartment" placeholder="Choose Department" enabled="false" showSecondaryValues="true"
+									<ComboBox id="cbDepartment" placeholder="Choose Department" editable="false" enabled="true" showSecondaryValues="true"
 										items="{ path: 'MasterData>/AbbreviationDepartementSet' }" selectionChange="onChangeDepartment">
 										<core:ListItem key="" text="" />
 										<core:ListItem key="{MasterData>Z56abbr}" text="{MasterData>Z56abbr} - {MasterData>Z56abbrtxt}" />
 									</ComboBox>
-									<CheckBox xmlns="sap.m" id="ckDepartment" text="All" selected="false" tooltip="All Company" select="onAllDepartment" enabled="false"/>
+									<CheckBox xmlns="sap.m" id="ckDepartment" text="All" selected="false" tooltip="All Company" select="onAllDepartment" editable="false" enabled="true"/>
 								</form:fields>
 							</form:FormElement>
 							<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true"
@@ -194,13 +194,13 @@
 										id="label32"/>
 								</form:label>
 								<form:fields>
-									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="true" enabled="false" visible="true" width="auto" valueState="None" maxWidth="100%"
+									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="false" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%"
 										id="cbSection" items="{ path: 'MasterData>/AbbreviationSectionSet' }" >
 										<core:ListItem key="" text="" />
 										<core:ListItem key="{MasterData>Z78abbr}" text="{MasterData>Z78abbr} - {MasterData>Z78abbrtxt}" />
 									</ComboBox>
 									<CheckBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="ckSection" text="All"
-										selected="false" tooltip="All Company" select="onAllSection" enabled="false"/>
+										selected="false" tooltip="All Company" select="onAllSection" editable="false" enabled="true"/>
 								</form:fields>
 							</form:FormElement>
 							<!--<form:FormElement visible="true" modelContextChange="test">-->

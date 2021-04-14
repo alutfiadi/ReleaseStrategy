@@ -175,7 +175,7 @@
 									<Label text="Department" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox id="cbDepartment" placeholder="Choose Department" enabled="true" showSecondaryValues="true"
+									<ComboBox id="cbDepartment" placeholder="Choose Department" editable="false" enabled="true" showSecondaryValues="true"
 										items="{ path: 'MasterData>/AbbreviationDepartementSet' }" selectionChange="onChangeDepartment" selectedKey="{selectedReleaseStrategy>/Dept}">
 										<core:ListItem key="" text="" />
 										<core:ListItem key="{MasterData>Z56abbr}" text="{MasterData>Z56abbr} - {MasterData>Z56abbrtxt}" />
@@ -190,7 +190,7 @@
 										id="label32"/>
 								</form:label>
 								<form:fields>
-									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%"
+									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="false" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%"
 										id="cbSection" items="{ path: 'MasterData>/AbbreviationSectionSet' }"  selectedKey="{selectedReleaseStrategy>/Sctn}">
 										<core:ListItem key="" text="" />
 										<core:ListItem key="{MasterData>Z78abbr}" text="{MasterData>Z78abbr} - {MasterData>Z78abbrtxt}" />

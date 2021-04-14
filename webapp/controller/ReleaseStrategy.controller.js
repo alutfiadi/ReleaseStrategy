@@ -170,6 +170,37 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			});
 
 		},
+		rsText: function (code) {
+			var text = "";
+			if (code == "21") {
+				text = "Internal 1 PT";
+			} else if (code == "22") {
+				text = "Internal Antar PT";
+			} else if (code == "23") {
+				text = "Eksternal 1 PT";
+			} else if (code == "24") {
+				text = "Eksternal Antar PT";
+			} else if (code == "B1") {
+				text = "Antar Section";
+			} else if (code == "Z6") {
+				text = "Pengunduran Diri Normal";
+			} else if (code == "62") {
+				text = "Pensiun";
+			} else if (code == "C1") {
+				text = "Kelengkapan Data Unit";
+			} else if (code == "C2") {
+				text = "Kelengkapan Data HO";
+			} else if (code == "Z1") {
+				text = "Promosi";
+			} else if (code == "41") {
+				text = "Demosi";
+			} else if (code == "E1") {
+				text = "Change Personal Data";
+			} else if (code == "E2") {
+				text = "Change Data Agama";
+			}
+			return text;
+		},
 		onInit: function () {
 
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -203,19 +234,50 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 		_onObjectMatched: function (oEvent) {
 			var oModel = this.getView().getModel("ReleaseStrategy");
+
+			//----
 			oModel.refresh();
-			// if (oEvent) {
-			// 	var sObjectId = oEvent.getParameter("arguments").objectId;
-			// 	this.getOwnerComponent().getModel("ReleaseStrategy").setProperty("/sObjectId", sObjectId); //JSON Model, save objectId value
-			// } else {
-			// 	var sObjectId = this.getOwnerComponent().getModel("ReleaseStrategy").getProperty("/sObjectId");
-			// }
-			// this.getModel().metadataLoaded().then(function () {
-			// 	var sObjectPath = this.getModel().createKey("SOEntitySet", {
-			// 		ID: sObjectId
-			// 	});
-			// 	this._bindView("/" + sObjectPath);
-			// }.bind(this));
+			// oModelText.refresh();
+			
+			var aFilter =[];
+			this.loadTableData("oModelText", aFilter, "tab1");
+
+			//Define Model Table2
+			// var oThis = this;
+			// var oModelText = new sap.ui.model.json.JSONModel();
+			// // this.getView().setModel(oModelEdu);
+			// // this.getView().setModel(oModelText, "Text");
+			// this.getView().setModel(oModelText, "oModelText");
+			// //read education data 
+			// oModel.read("/ReleaseStrategySet", {
+			// 	success: function (oData, response) {
+			// 		var odataResults = oData.results;
+			// 		for (var i = 0; i < odataResults.length; i++) {
+			// 			//get rctext
+			// 			var text = oThis.rsText(odataResults[i].Doctype);
+			// 			odataResults[i].DTDesc = text;
+
+			// 			//get from to text
+			// 			var fromto = odataResults[i].Fromto;
+			// 			if (fromto == "01" || fromto == "1") {
+			// 				odataResults[i].Fromto = "[From]";
+			// 			} else if (fromto == "02" || fromto == "2") {
+			// 				odataResults[i].Fromto = "[To]";
+			// 			}
+
+			// 		}
+			// 		oModelText.setData(odataResults);
+			// 		// oThis.getView().setModel(oModelText, "oModelText");
+			// 		// console.log(odataResults);
+			// 		// oModelText.setData(odataResults);
+			// 	},
+			// 	error: function (oError) {
+
+			// 	}
+
+			// });
+
+			// console.log(oThis.getView().getModel("oModelText"));
 		},
 
 		onExit: function () {
@@ -277,6 +339,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			//	var data = contextdetail.getProperty("PONO");
 			//	MessageToast.show(data);
 			var selectedObject = oEvent.getSource().getBindingContext("ReleaseStrategy").getObject();
+			var oModel = new sap.ui.model.json.JSONModel(selectedObject);
+			sap.ui.getCore().setModel(oModel, "passSelectedData");
+
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("Editstrategy", {
+				rsPath: encodeURIComponent(contextdetail)
+			});
+
+		},
+		navigateReleaseDetails2: function (oEvent) {
+
+			var context = oEvent.getSource();
+			var contextdetail = context.getBindingContext("oModelText").getPath().substr(1);
+			//	var data = contextdetail.getProperty("PONO");
+			//	MessageToast.show(data);
+			var selectedObject = oEvent.getSource().getBindingContext("oModelText").getObject();
 			var oModel = new sap.ui.model.json.JSONModel(selectedObject);
 			sap.ui.getCore().setModel(oModel, "passSelectedData");
 
@@ -360,7 +438,84 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
 
-		}
+		},
+		onFilterStrategy2: function (oEvent) {
+
+			// build filter array
+			var aFilter = [];
+			var sQuery = oEvent.getParameter("query");
+			if (sQuery) {
+				aFilter.push(new Filter("Rscode", FilterOperator.Contains, sQuery));
+				aFilter.push(new Filter("Rstxt", FilterOperator.Contains, sQuery));
+			}
+
+			// filter binding
+			// var oList = this.getView().byId("t2ReleaseStrategy");
+			// var oBinding = oList.getBinding("items");
+			// oBinding.filter(aFilter);
+
+			//--------------------------
+			// var sQuery = oEvent.getSource().getValue();
+			// var aFilter1 = [];
+			// aFilter1.push(this.getInitialFiltertab1());
+			// aFilter1.push(this.getSearchFilters(sQuery));
+			this.loadTableData("oModelText", aFilter, "tab1");
+
+		},
+		loadTableData: function (oModelName, filter, tabId) {
+			//console.log("Load Table Data..");
+			var oDialog = this.byId("BusyDialog");
+			oDialog.open();
+			var oModelName = oModelName;
+			var aFilter = [];
+			var oTab = tabId;
+			aFilter = filter;
+			//console.log("Load Table "+oModelName);
+			//Read Section	
+			// var oThis = sap.ui.getCore();
+			var oThis = this;
+			var sUrl = "/sap/opu/odata/sap/ZHCM_WF_ENGINE_SRV/";
+			var oModel = new sap.ui.model.odata.ODataModel(sUrl);
+			oModel.read("/ReleaseStrategySet", {
+				success: function (oData) { /* do something */
+					// console.log("oData result : ");
+					// console.log(oData.results[0]);
+					var odataResults = oData.results;
+					// console.log("odata results : ");
+					// console.log(odataResults);
+					// oThis.getView().byId(oTab).setCount(odataResults.length);
+					if (oTab == "tab1") {
+						for (var i = 0; i < odataResults.length; i++) {
+							//get rctext
+							var text = oThis.rsText(odataResults[i].Doctype);
+							odataResults[i].DTDesc = text;
+
+							//get from to text
+							var fromto = odataResults[i].Fromto;
+							if (fromto == "01" || fromto == "1") {
+								odataResults[i].Fromto = "[From]";
+							} else if (fromto == "02" || fromto == "2") {
+								odataResults[i].Fromto = "[To]";
+							}
+
+						}
+					}
+
+					// oModelText.setData(odataResults);
+					var oModel = new sap.ui.model.json.JSONModel(odataResults);
+					oThis.getView().setModel(oModel, oModelName);
+					oDialog.close();
+					// console.log("oModel : ");
+					// console.log(oModel);
+				},
+				error: function (oError) { /* do something */
+					oDialog.close();
+					MessageBox.error("No data found, check your connection and refresh the browser.");
+					//console.log("Cannot load "+oModelName+", check your connection and refresh the browser.");
+				},
+				filters: aFilter
+			});
+		},
 
 	});
 }, /* bExport= */ true);
