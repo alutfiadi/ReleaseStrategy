@@ -130,7 +130,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var irccode = this.getView().byId("irccode").getValue();
 			var irctxt = this.getView().byId("irctxt").getValue();
 
-			var oObject = {};
+			var oObject = {}; 
 			oObject = {
 				"Rccode": irccode,
 				"Rctxt": irctxt,
