@@ -1,31 +1,31 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="AL.ReleaseStrategy.controller.Editstrategy" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
-    <Page showHeader="true" title="Edit Release Strategy" showFooter="true" showNavButton="false">
-        <content>
-        	<BusyDialog id="BusyDialog" />
-            <form:Form width="100%" editable="true" visible="true">
-                <form:title>
-                    <core:Title text="Header" level="Auto"/>
-                </form:title>
-                <form:formContainers>
-                    <form:FormContainer visible="true">
-                        <form:formElements>
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="AL.ReleaseStrategy.controller.Editstrategy" xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt">
+	<Page showHeader="true" title="Edit Release Strategy" showFooter="true" showNavButton="false">
+		<content>
+			<BusyDialog id="BusyDialog"/>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Header" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
 							<form:FormElement visible="true">
 								<form:label>
 									<Label text="Release Strategy" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<Input id="iRscode" value="{selectedReleaseStrategy>/Rscode}" placeholder="Release Strategy Code" type="Text" showValueHelp="false" editable="false" visible="true"
-										width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="8"/>
+									<Input id="iRscode" value="{selectedReleaseStrategy>/Rscode}" placeholder="Release Strategy Code" type="Text" showValueHelp="false"
+										editable="false" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="8"/>
 								</form:fields>
 							</form:FormElement>
 							<form:FormElement visible="true">
 								<form:label>
-									<Label  text="Release Strategy Desc" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
-										visible="true"/>
+									<Label text="Release Strategy Desc" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<Input id="iRstxt" value="{selectedReleaseStrategy>/Rstxt}" placeholder="Release Strategy " type="Text" showValueHelp="false" enabled="true" visible="true" width="auto"
-										valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="20"/>
+									<Input id="iRstxt" value="{selectedReleaseStrategy>/Rstxt}" placeholder="Release Strategy " type="Text" showValueHelp="false" enabled="true"
+										visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="20"/>
 								</form:fields>
 							</form:FormElement>
 							<form:FormElement visible="false" id="elRgroup">
@@ -41,21 +41,20 @@
 									<Label text="Release Code" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox id="cbCode" showSecondaryValues="true"
-										items="{ path: 'ReleaseStrategy>/ReleaseCodeSet', sorter: { path: 'Rccode' }}" 
+									<ComboBox id="cbCode" showSecondaryValues="true" items="{ path: 'ReleaseStrategy>/ReleaseCodeSet', sorter: { path: 'Rccode' }}"
 										selectionChange="onChange" selectedKey="{selectedReleaseStrategy>/Rccode}">
 										<core:ListItem key="{ReleaseStrategy>Rccode}" text="{ReleaseStrategy>Rccode} - {ReleaseStrategy>Rctxt}"
 											additionalText="{ReleaseStrategy>Rgcode}"/>
 									</ComboBox>
 								</form:fields>
 							</form:FormElement>
-							<form:FormElement visible="true">
+							<form:FormElement visible="false">
 								<form:label>
 									<Label text="Time Limit (days)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<Input id="iLimit" value="{selectedReleaseStrategy>/Limit}"  placeholder="Time limit days" type="Number" showValueHelp="false" enabled="true" visible="true" width="25%" valueHelpOnly="false"
-										required="false" valueStateText="Invalid entry"/>
+									<Input id="iLimit" value="{selectedReleaseStrategy>/Limit}" placeholder="Time limit days" type="Number" showValueHelp="false" enabled="true"
+										visible="true" width="25%" valueHelpOnly="false" required="false" valueStateText="Invalid entry"/>
 								</form:fields>
 							</form:FormElement>
 							<form:FormElement visible="true">
@@ -63,24 +62,38 @@
 									<Label text="Requester" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<MultiComboBox id="cbRequester" placeholder="Choose Max 3 User Requester" editable="true" enabled="true"
-										visible="true" width="auto" valueState="None" selectionFinish="validasiUser"/>
+									<MultiComboBox id="cbRequester" placeholder="Choose Max 3 User Requester" editable="true" enabled="true" visible="true" width="auto"
+										valueState="None" selectionFinish="validasiUser"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement id="fdeleted" visible="true">
+								<form:label>
+									<!--<tnt:InfoLabel id="il8" text="Deleted" colorScheme="2" displayOnly= "true" icon="sap-icon://delete" />-->
+									<Label text="Deleted" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<CheckBox id="ckDelete" text="" selected="false" enabled="true" valueState="Error"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="false">
+								<form:label></form:label>
+								<form:fields>
+									<Input id="iStatus" value="{oStatus>/Status}"/>
 								</form:fields>
 							</form:FormElement>
 						</form:formElements>
-                        
-                        <form:title/>
-                    </form:FormContainer>
-                </form:formContainers>
-                <form:layout>
-                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
-                </form:layout>
-            </form:Form>
-            <form:Form width="100%" editable="true" visible="true">
-                <form:title>
-                    <core:Title text="Release Strategy Parameters" level="Auto"/>
-                </form:title>
-                <form:formContainers>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Release Strategy Parameters" level="Auto"/>
+				</form:title>
+				<form:formContainers>
 					<form:FormContainer visible="true">
 						<form:formElements>
 							<form:FormElement visible="true">
@@ -113,10 +126,10 @@
 										visible="true" id="lFromTo"/>
 								</form:label>
 								<form:fields>
-									<ComboBox xmlns="sap.m" placeholder="Choose From or To" editable="true" enabled="true" visible="true" width="auto"
-										valueState="None" maxWidth="100%" id="cbFromTo" selectedKey="{selectedReleaseStrategy>/Fromto}">
-										<core:ListItem key="01" text="From"/>
-										<core:ListItem key="02" text="To"/>
+									<ComboBox xmlns="sap.m" placeholder="Choose From or To" editable="true" enabled="true" visible="true" width="auto" valueState="None"
+										maxWidth="100%" id="cbFromTo" selectedKey="{selectedReleaseStrategy>/Fromto}">
+										<core:ListItem key="1" text="From"/>
+										<core:ListItem key="2" text="To"/>
 									</ComboBox>
 								</form:fields>
 							</form:FormElement>
@@ -127,8 +140,8 @@
 										visible="true" id="label31"/>
 								</form:label>
 								<form:fields>
-									<ComboBox xmlns="sap.m" selectedKey="{selectedReleaseStrategy>/Busns}" placeholder="Choose Business Category" editable="true" enabled="true" visible="true" width="auto"
-										valueState="None" maxWidth="100%" id="cbBusiness" selectionChange="onChangeBusiness">
+									<ComboBox xmlns="sap.m" selectedKey="{selectedReleaseStrategy>/Busns}" placeholder="Choose Business Category" editable="true" enabled="true"
+										visible="true" width="auto" valueState="None" maxWidth="100%" id="cbBusiness" selectionChange="onChangeBusiness">
 										<core:ListItem key="1" text="ESTATE"/>
 										<core:ListItem key="2" text="INDUSTRY"/>
 										<core:ListItem key="3" text="POM"/>
@@ -136,20 +149,17 @@
 									</ComboBox>
 								</form:fields>
 							</form:FormElement>
-							
 							<form:FormElement visible="true">
 								<form:label>
 									<Label text="Unit" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox id="cbUnit" placeholder="Choose Unit" editable="true" enabled="true" visible="true" width="auto" valueState="None"
-										maxWidth="100%" items="{ path: 'MasterData>/AbbreviationUnitSet'}" 
-										selectionChange="onChangeUnit" selectedKey="{selectedReleaseStrategy>/Unit}">
+									<ComboBox id="cbUnit" placeholder="Choose Unit" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%"
+										items="{ path: 'MasterData>/AbbreviationUnitSet'}" selectionChange="onChangeUnit" selectedKey="{selectedReleaseStrategy>/Unit}">
 										<core:ListItem key="{MasterData>Z12abbr}" text="{MasterData>Z12abbr} - {MasterData>Z12abbrtxt}"/>
 									</ComboBox>
 								</form:fields>
 							</form:FormElement>
-							
 						</form:formElements>
 						<form:title/>
 					</form:FormContainer>
@@ -163,7 +173,7 @@
 									<ComboBox id="cbDivision" placeholder="Choose Division" editable="true" enabled="true" visible="true" width="auto" valueState="None"
 										maxWidth="100%" selectionChange="onChangeDivision" items="{ path: 'MasterData>/AbbreviationDivisiSet'}"
 										selectedKey="{selectedReleaseStrategy>/Div}">
-										<core:ListItem key="" text="" />
+										<core:ListItem key="" text=""/>
 										<core:ListItem key="{MasterData>Z34abbr}" text="{MasterData>Z34abbr} - {MasterData>Z34abbrtxt}"/>
 									</ComboBox>
 									<CheckBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="ckDivision" text="All"
@@ -176,9 +186,10 @@
 								</form:label>
 								<form:fields>
 									<ComboBox id="cbDepartment" placeholder="Choose Department" editable="false" enabled="true" showSecondaryValues="true"
-										items="{ path: 'MasterData>/AbbreviationDepartementSet' }" selectionChange="onChangeDepartment" selectedKey="{selectedReleaseStrategy>/Dept}">
-										<core:ListItem key="" text="" />
-										<core:ListItem key="{MasterData>Z56abbr}" text="{MasterData>Z56abbr} - {MasterData>Z56abbrtxt}" />
+										items="{ path: 'MasterData>/AbbreviationDepartementSet' }" selectionChange="onChangeDepartment"
+										selectedKey="{selectedReleaseStrategy>/Dept}">
+										<core:ListItem key="" text=""/>
+										<core:ListItem key="{MasterData>Z56abbr}" text="{MasterData>Z56abbr} - {MasterData>Z56abbrtxt}"/>
 									</ComboBox>
 									<CheckBox xmlns="sap.m" id="ckDepartment" text="All" selected="false" tooltip="All Department" select="onAllDepartment" enabled="true"/>
 								</form:fields>
@@ -190,10 +201,10 @@
 										id="label32"/>
 								</form:label>
 								<form:fields>
-									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="false" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%"
-										id="cbSection" items="{ path: 'MasterData>/AbbreviationSectionSet' }"  selectedKey="{selectedReleaseStrategy>/Sctn}">
-										<core:ListItem key="" text="" />
-										<core:ListItem key="{MasterData>Z78abbr}" text="{MasterData>Z78abbr} - {MasterData>Z78abbrtxt}" />
+									<ComboBox xmlns="sap.m" placeholder="Choose Section" editable="false" enabled="true" visible="true" width="auto" valueState="None"
+										maxWidth="100%" id="cbSection" items="{ path: 'MasterData>/AbbreviationSectionSet' }" selectedKey="{selectedReleaseStrategy>/Sctn}">
+										<core:ListItem key="" text=""/>
+										<core:ListItem key="{MasterData>Z78abbr}" text="{MasterData>Z78abbr} - {MasterData>Z78abbrtxt}"/>
 									</ComboBox>
 									<CheckBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="ckSection" text="All"
 										selected="false" tooltip="All Section" select="onAllSection" enabled="true"/>
@@ -215,29 +226,30 @@
 									<Label text="Golongan" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<ComboBox xmlns="sap.m" id="cbLevelFrom"  selectedKey="{selectedReleaseStrategy>/Perskfr}" selectionChange="checkLevelFrom" placeholder="Level From" items="{ path: 'MasterData>/MasterDataGolonganSet' }">
-										<core:ListItem key="{MasterData>Persg}" text="{MasterData>Persg}" />
+									<ComboBox xmlns="sap.m" id="cbLevelFrom" selectedKey="{selectedReleaseStrategy>/Perskfr}" selectionChange="checkLevelFrom"
+										placeholder="Level From" items="{ path: 'MasterData>/MasterDataGolonganSet' }">
+										<core:ListItem key="{MasterData>Persg}" text="{MasterData>Persg}"/>
 									</ComboBox>
 									<ComboBox xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" id="cbLevelTo"
-										placeholder="Level To" selectionChange="checkLevelFrom" items="{ path: 'MasterData>/MasterDataGolonganSet' }"  selectedKey="{selectedReleaseStrategy>/Perskto}">
-										<core:ListItem key="{MasterData>Persg}" text="{MasterData>Persg}" />
+										placeholder="Level To" selectionChange="checkLevelFrom" items="{ path: 'MasterData>/MasterDataGolonganSet' }"
+										selectedKey="{selectedReleaseStrategy>/Perskto}">
+										<core:ListItem key="{MasterData>Persg}" text="{MasterData>Persg}"/>
 									</ComboBox>
 								</form:fields>
 							</form:FormElement>
-							
 						</form:formElements>
 						<form:title/>
 					</form:FormContainer>
 				</form:formContainers>
-                <form:layout>
-                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
-                </form:layout>
-            </form:Form>
-            <form:Form width="100%" editable="true" visible="true">
-                <form:title>
-                    <core:Title text="Approver" level="Auto"/>
-                </form:title>
-                <form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Approver" level="Auto"/>
+				</form:title>
+				<form:formContainers>
 					<form:FormContainer visible="true">
 						<form:formElements>
 							<form:FormElement visible="true">
@@ -437,22 +449,24 @@
 						<form:title/>
 					</form:FormContainer>
 				</form:formContainers>
-                <form:layout>
-                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
-                </form:layout>
-            </form:Form>
-        </content>
-        <footer>
-            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
-                <content>
-                    <ToolbarSpacer width=""/>
-                    <Button text="Change" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onSave"/>
-                    <Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="navBack"/>
-                </content>
-            </OverflowToolbar>
-        </footer>
-        <headerContent/>
-        <subHeader/>
-        <customHeader/>
-    </Page>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="Change" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onSave"/>
+					<Button text="Delete" type="Reject" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false"
+						press="onApproveDialogPress" id="bStatus"/>
+					<Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="navBack"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
 </mvc:View>

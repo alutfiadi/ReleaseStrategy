@@ -552,6 +552,7 @@ sap.ui.define([
 						"Rctxt": "",
 						"Doctype": cbDocType,
 						"ChangeInd": "I",
+						"Status": "",
 						"Rscode": "",
 						"Fromto": cbFromTo,
 						"Rstxt": iRstxt,

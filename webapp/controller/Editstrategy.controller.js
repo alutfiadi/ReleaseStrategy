@@ -6,8 +6,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/FilterType",
-	"sap/m/MessageToast"
-], function (BaseController, MessageBox, Utilities, History, JSONModel, Filter, FilterOperator, FilterType, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/Dialog",
+	"sap/m/DialogType",
+	"sap/m/Button",
+	"sap/m/ButtonType",
+	"sap/m/Label",
+	"sap/m/Text"
+], function (BaseController, MessageBox, Utilities, History, JSONModel, Filter, FilterOperator, FilterType, MessageToast, Dialog,
+	DialogType, Button, ButtonType, Label, Text) {
 	"use strict";
 
 	return BaseController.extend("AL.ReleaseStrategy.controller.Editstrategy", {
@@ -273,6 +280,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				"Perskfr": oModel.oData.Perskfr, //Goloingan From
 				"Perskto": oModel.oData.Perskto, //Golongan to
 				"Fromto": oModel.oData.Fromto, // FRom To
+				"Deleted": oModel.oData.Deleted // Delted
 			};
 			if (this.ReleaseStrategtyData.Div == "All") {
 				this.getView().byId("ckDivision").setSelected(true);
@@ -299,6 +307,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.byId("elFromTo").setVisible(true);
 			} else {
 				this.byId("elFromTo").setVisible(false);
+			}
+
+			if (this.ReleaseStrategtyData.Deleted == "X") {
+				this.getView().byId("ckDelete").setSelected(true);
+				this.getView().byId("fdeleted").setVisible(true);
+			} else {
+				this.getView().byId("ckDelete").setSelected(false);
+				this.getView().byId("fdeleted").setVisible(false);
 			}
 			//ISI PARTAMETER
 			var oFilterBusiness = new sap.ui.model.Filter("Busns", sap.ui.model.FilterOperator.EQ, this.ReleaseStrategtyData.Busns);
@@ -359,6 +375,24 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var Requester = [];
 			Requester.push(oModel.oData.Req1, oModel.oData.Req2, oModel.oData.Req3);
 			that.getView().byId("cbRequester").setSelectedKeys(Requester);
+
+			//Call STATUS RS
+
+			oModelApproval.read("/ReleaseStrategySet('" + this.ReleaseStrategtyData.Rscode + "')", {
+				success: function (oData, response) {
+					// var oResults = oData;
+					var oModelSt = new sap.ui.model.json.JSONModel(oData);
+					that.getView().setModel(oModelSt, "oStatus");
+					if (oData.Deleted !== "X") {
+						if (oData.Status !== "02" || oData.Status !== "01") {
+							that.byId("bStatus").setVisible(true);
+						}
+					}else{
+						that.byId("bStatus").setVisible(false);
+					}
+
+				}
+			});
 		},
 
 		onChange: function (oEvent) {
@@ -393,7 +427,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.getView().byId("cbDepartment").setEditable(false);
 				this.getView().byId("cbSection").setSelectedKey("");
 				this.getView().byId("cbSection").setEditable(false);
-				
+
 				this.getView().byId("ckDepartment").setEditable(false);
 				this.getView().byId("ckDepartment").setSelected(true);
 				this.getView().byId("ckSection").setSelected(true);
@@ -534,6 +568,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.getView().byId("ckDivision").setSelected(false);
 			this.getView().byId("ckDepartment").setSelected(false);
 			this.getView().byId("ckSection").setSelected(false);
+			this.getView().byId("ckDelete").setSelected(false);
 		},
 		onSave: function (oEvent) {
 			// var oBindingContext = oEvent.getSource().getBindingContext();
@@ -566,6 +601,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var ckDivision = this.getView().byId("ckDivision").getSelected();
 			var ckDepartment = this.getView().byId("ckDepartment").getSelected();
 			var ckSection = this.getView().byId("ckSection").getSelected();
+			var ckDelete = this.getView().byId("ckDelete").getSelected();
 			//if checkbox all
 			if (ckDivision) {
 				cbDivision = "All";
@@ -575,6 +611,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			if (ckSection) {
 				cbSection = "All";
+			}
+			if (ckSection) {
+				ckDelete = "X";
+			}else{
+				ckDelete ="";
 			}
 
 			//assign value to items
@@ -598,9 +639,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				Strategytoapprvalnav.push(level);
 			}
 			var releaseStrategy = {
-				"Rctxt": "",
-				"Doctype": cbDocType,
 				"ChangeInd": "U",
+				"Doctype": cbDocType,
+				"Deleted": ckDelete,
+				"Rctxt": "",
+				"Status": "",
 				"Rscode": iRscode,
 				"Fromto": cbFromTo,
 				"Rstxt": iRstxt,
@@ -691,6 +734,54 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		navBack: function () {
 			this.oRouter.navTo("ReleaseStrategy", true);
 
+		},
+		onApproveDialogPress: function () {
+			var that = this;
+			if (!this.oApproveDialog) {
+				this.oApproveDialog = new Dialog({
+					type: DialogType.Message,
+					title: "Confirm",
+					content: new Text({
+						text: "Are you sure you  want  to delete Strategy " + this.ReleaseStrategtyData.Rscode + "?"
+					}),
+					beginButton: new Button({
+						type: ButtonType.Reject,
+						text: "Delete",
+						press: function () {
+							// MessageToast.show("Submit pressed!");
+							that.onDelete(this.ReleaseStrategtyData.Rscode);
+							this.oApproveDialog.close();
+						}.bind(this)
+					}),
+					endButton: new Button({
+						text: "Cancel",
+						press: function () {
+							this.oApproveDialog.close();
+						}.bind(this)
+					})
+				});
+			}
+
+			this.oApproveDialog.open();
+		},
+
+		onDelete: function (oCode) {
+			var that = this;
+			var sUrl = "/sap/opu/odata/sap/ZHCM_WF_ENGINE_SRV/";
+			this.oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+			this.oModel.remove("/ReleaseStrategySet('" + oCode + "')", {
+				method: "DELETE",
+				success: function (data) {
+					MessageToast.show(oCode + " is Deleted");
+					that.clearData();
+					that.navBack();
+				},
+				error: function (e) {
+					var message = JSON.parse(e.response.body);
+					//Log.info(message.error.message.value);
+					MessageToast.show(message.error.message.value);
+				}
+			});
 		}
 
 	});

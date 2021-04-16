@@ -53,7 +53,7 @@
 									</ComboBox>
 								</form:fields>
 							</form:FormElement>
-							<form:FormElement visible="true">
+							<form:FormElement visible="false">
 								<form:label>
 									<Label text="Time Limit (days)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>

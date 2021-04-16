@@ -493,9 +493,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 							//get from to text
 							var fromto = odataResults[i].Fromto;
 							if (fromto == "01" || fromto == "1") {
-								odataResults[i].Fromto = "[From]";
+								odataResults[i].tFromto = "[From]";
 							} else if (fromto == "02" || fromto == "2") {
-								odataResults[i].Fromto = "[To]";
+								odataResults[i].tFromto = "[To]";
 							}
 
 						}

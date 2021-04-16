@@ -58,6 +58,12 @@
 										</header>
 										<footer/>
 									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Deleted" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
 									<!--<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">-->
 									<!--    <header>-->
 									<!--        <Text text="From / To" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
@@ -71,9 +77,9 @@
 											<Text text="{oModelText>Rscode}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 											<Text text="{oModelText>Rstxt}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 											<Text text="{oModelText>Rccode} - {oModelText>Rctxt}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-											<Text text="{oModelText>Doctype} - {oModelText>DTDesc} {oModelText>Fromto}" width="auto" maxLines="1" wrapping="false" textAlign="Begin"
+											<Text text="{oModelText>Doctype} - {oModelText>DTDesc} {oModelText>tFromto}" width="auto" maxLines="1" wrapping="false" textAlign="Begin"
 												textDirection="Inherit" visible="true"/>
-											<!--<Text text="{oModelText>Fromto}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+											<Text text="{oModelText>Deleted}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</cells>
 									</ColumnListItem>
 								</items>
