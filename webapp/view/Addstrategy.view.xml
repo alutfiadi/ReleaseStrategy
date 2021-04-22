@@ -104,7 +104,7 @@
 										<core:ListItem key="C1" text="C1 - Kelengkapan Data Unit"/>
 										<core:ListItem key="C2" text="C2 - Kelengkapan Data HO"/>
 										<core:ListItem key="Z1" text="Z1 - Promosi"/>
-										<core:ListItem key="41" text="41 - Demosi"/>
+										<core:ListItem key="Z4" text="Z4 - Demosi"/>
 										<core:ListItem key="E1" text="E1 - Change Personal Data"/>
 										<core:ListItem key="E2" text="E2 - Change Data Agama"/>
 									</ComboBox>

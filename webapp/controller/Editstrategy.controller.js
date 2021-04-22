@@ -387,7 +387,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						if (oData.Status !== "02" || oData.Status !== "01") {
 							that.byId("bStatus").setVisible(true);
 						}
-					}else{
+					} else {
 						that.byId("bStatus").setVisible(false);
 					}
 
@@ -448,7 +448,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.getView().byId("cbSection").setSelectedKey("");
 				this.getView().byId("cbSection").setEditable(false);
 				this.getView().byId("ckSection").setSelected(true);
-				this.getView().byId("ckSection").setSelected(false);
+				this.getView().byId("ckSection").setEditable(false);
 			} else {
 				this.getView().byId("cbDepartment").setEditable(true);
 				this.getView().byId("ckDepartment").setSelected(false);
@@ -614,8 +614,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			if (ckSection) {
 				ckDelete = "X";
-			}else{
-				ckDelete ="";
+			} else {
+				ckDelete = "";
 			}
 
 			//assign value to items

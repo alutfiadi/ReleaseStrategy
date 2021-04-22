@@ -192,7 +192,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				text = "Kelengkapan Data HO";
 			} else if (code == "Z1") {
 				text = "Promosi";
-			} else if (code == "41") {
+			} else if (code == "Z4") {
 				text = "Demosi";
 			} else if (code == "E1") {
 				text = "Change Personal Data";
