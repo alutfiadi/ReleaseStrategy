@@ -187,7 +187,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			} else if (code == "62") {
 				text = "Pensiun";
 			} else if (code == "C1") {
-				text = "Kelengkapan Data Unit";
+				text = "Kelengkapan Data Karyawan Baru";
 			} else if (code == "C2") {
 				text = "Kelengkapan Data HO";
 			} else if (code == "Z1") {

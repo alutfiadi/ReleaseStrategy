@@ -110,8 +110,8 @@
 										<core:ListItem key="B1" text="B1 - Antar Section"/>
 										<core:ListItem key="Z6" text="Z6 - Pengunduran Diri Normal"/>
 										<core:ListItem key="62" text="62 - Pensiun"/>
-										<core:ListItem key="C1" text="C1 - Kelengkapan Data Unit"/>
-										<core:ListItem key="C2" text="C2 - Kelengkapan Data HO"/>
+										<core:ListItem key="C1" text="C1 - Kelengkapan Data Karyawan Baru"/>
+										<!--<core:ListItem key="C2" text="C2 - Kelengkapan Data HO"/>-->
 										<core:ListItem key="Z1" text="Z1 - Promosi"/>
 										<core:ListItem key="Z4" text="Z4 - Demosi"/>
 										<core:ListItem key="E1" text="E1 - Change Personal Data"/>
